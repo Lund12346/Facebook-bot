@@ -77,13 +77,13 @@ module.exports. run = function({ api, event, args, getText }) {
     
  const text = `\nPage (${page}/${Math.ceil(arrayInfo.length/numberOfOnePage)})`;
  
-    return api.sendMessage(siu + "\n\n" + msg  + text, threadID, async (error, info) => {
-			if (autoUnsend) {
-				await new Promise(resolve => setTimeout(resolve, delayUnsend * 1000));
-				return api.unsendMessage(info.messageID);
-			} else return;
-		}, event.messageID);
-	}
+    return api.sendMessage(siu + "\n\n" + msg + text, threadID, async (error, info) => {
+    if (autoUnsend && info) {
+        await new Promise(resolve => setTimeout(resolve, delayUnsend * 1000));
+        return api.unsendMessage(info.messageID);
+    }
+}, event.messageID);
+
 
 	return api.sendMessage(getText("moduleInfo", command.config.name, command.config.description, `${prefix}${command.config.name} ${(command.config.usages) ? command.config.usages : ""}`, command.config.commandCategory, command.config.cooldowns, ((command.config.hasPermssion == 0) ? getText("user") : (command.config.hasPermssion == 1) ? getText("adminGroup") : getText("adminBot")), command.config.credits), threadID, messageID);
 };
