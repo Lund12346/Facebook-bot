@@ -2,11 +2,14 @@ const moment = require("moment-timezone");
 const { readdirSync, readFileSync, writeFileSync, existsSync, unlinkSync, rm } = require("fs-extra");
 const { join, resolve } = require("path");
 const { execSync } = require('child_process');
+
+console.log("╭─────────────────────────────╮");
+console.log("│      ♛  𝐀𝐃𝐃𝐈𝐄 𝐗 𝐁𝐎𝐓  ♛      │");
+console.log("│   𝐒𝐭𝐚𝐭𝐮𝐬: 𝐒𝐲𝐬𝐭𝐞𝐦 𝐒𝐭𝐚𝐫𝐭𝐢𝐧𝐠...  │");
+console.log("╰─────────────────────────────╯");
+
 const logger = require("./utils/log.js");
-const login = require("fca-smart-shankar"); 
-const axios = require("axios");
-const listPackage = JSON.parse(readFileSync('./package.json')).dependencies;
-const listbuiltinModules = require("module").builtinModules;
+;
 
 global.client = new Object({
     commands: new Map(),
