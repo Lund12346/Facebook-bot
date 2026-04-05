@@ -2,7 +2,7 @@ module.exports.config = {
   name: "unfriend",
   version: "1.0.0",
   hasPermssion: 2,
-  credits: "Arun Kumar",
+  credits: "Addie",
   description: "Remove friends by UID or all",
   commandCategory: "system",
   usages: "[uid/all]",
