@@ -58,22 +58,7 @@ module.exports.handleEvent = async ({ api, event }) => {
     if (!fs.existsSync(path.dirname(filePath)))
       fs.mkdirSync(path.dirname(filePath), { recursive: true });
 
-    const res = await axios.get(mediaUrl, { responseType: 'stream' });
-    const writer = fs.createWriteStream(filePath);
-    res.data.pipe(writer);
-
-    writer.on('finish', () => {
-      api.sendMessage({
-        body: replyText,
-        attachment: fs.createReadStream(filePath)
-      }, event.threadID, () => fs.unlinkSync(filePath), event.messageID);
-    });
-
-    writer.on('error', (err) => {
-      console.error("File write error:", err);
-      api.sendMessage(replyText + `\n🔗 ${mediaUrl}`, event.threadID, event.messageID);
-    });
-
+  
   } catch (err) {
     console.error("❌ Sanatani module error:", err.message);
   }
